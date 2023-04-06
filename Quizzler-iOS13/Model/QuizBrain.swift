@@ -24,28 +24,46 @@ struct QuizBrain{
     ]
     
     var questionNumber = 0
-    func checkAnswer(_ userAnswer: String) -> Bool{
+    var score = 0
+//    to check if an answer is correct or not
+    mutating func checkAnswer(_ userAnswer: String) -> Bool{
         if userAnswer == quiz[questionNumber].answer{
+            score+=1
             return true
         }else{
             return false
         }
     }
+//    to get the next question
     func getQuestionText() -> String{
         return quiz[questionNumber].text
     }
+//    to see the progress
     func getProgress() -> Float {
         let progress = Float(questionNumber) / Float(quiz.count)
         return progress
     }
+//    to move the pointer of the array to the next question
     mutating func nextQuestion() {
         
         if questionNumber + 1 < quiz.count{
             questionNumber+=1
         }
         else {
-            questionNumber=0
+            questionNumber = 0
+            score = 0
         }
-        
     }
+//    to get the score
+    mutating func getScore() -> Int {
+        return score
+    }
+    
+    
+    
+    
+    
+    
+    
+    
 }
